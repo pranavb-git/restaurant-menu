@@ -194,6 +194,7 @@ Menu
 .btn-container {
   margin-bottom: 4rem;
   display: flex;
+  min-width: 490px;
   justify-content: center;
 }
 .filter-btn {

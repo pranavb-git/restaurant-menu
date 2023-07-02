@@ -67,7 +67,7 @@ const info = [
     {
       id: 9,
       title: "ThickShake",
-      category: "shakes",
+      category: "Dessert",
       price: 150,
       img: "./images/thickshake.jpeg",
       desc: `Creamy handcrafted shakes in various flavors, a delightful treat for milkshake enthusiasts. Indulge in our menu's thickshake selection`,
@@ -82,17 +82,38 @@ const info = [
     },
   ];
 
+
 //   After extracting the info
 const SectionCenter = document.querySelector(".section-center");
+const FilterButtons = document.querySelectorAll('.filter-btn');
 
 window.addEventListener("DOMContentLoaded",function(){
     DisplayItems(info);
 });
 
+FilterButtons.forEach(function(btn){
+    btn.addEventListener('click',function(e){
+        const cat = e.currentTarget.dataset.id;
+        const menuCat = info.filter(function(menuItem){
+            if (menuItem.category === cat)
+                return menuItem;
+        });
+        // console.log(menuCat);
+        if(cat === "all")
+            DisplayItems(info);
+        else
+            DisplayItems(menuCat);
+    });
+});
+
+
+
+
+
 function DisplayItems(itemInfo)
 {
     let displayMenu = itemInfo.map(function (item) {
-        // console.log(item);
+        console.log(item.title);
         return ` <article class="menu-item">
         <img src="${item.img}" class="photo" alt="image of ${item.title}">
         <div class="item-info">
@@ -106,6 +127,6 @@ function DisplayItems(itemInfo)
    `;
     });
     displayMenu = displayMenu.join("");
-    console.log(displayMenu);
+    // console.log(displayMenu);
     SectionCenter.innerHTML=displayMenu;
 }
